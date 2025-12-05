@@ -1,20 +1,28 @@
 {
-  "name": "colorette",
-  "version": "1.0.0",
-  "description": "",
-  "homepage": "https://github.com/fredrikbergqvist/Colorette#readme",
-  "bugs": {
-    "url": "https://github.com/fredrikbergqvist/Colorette/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fredrikbergqvist/Colorette.git"
-  },
-  "license": "ISC",
-  "author": "Fredrik Bergqvist",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+	"name": "colorette",
+	"version": "1.0.0",
+	"description": "",
+	"homepage": "https://github.com/fredrikbergqvist/Colorette#readme",
+	"bugs": {
+		"url": "https://github.com/fredrikbergqvist/Colorette/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fredrikbergqvist/Colorette.git"
+	},
+	"license": "ISC",
+	"author": "Fredrik Bergqvist",
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"build": "node scripts/build.js",
+		"dev": "live-server --no-browser --wait=200 --port=4173 ./src/",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"clean-css": "^5.3.3",
+		"html-minifier-terser": "^7.2.0",
+		"live-server": "^1.2.2",
+		"terser": "^5.36.0"
+	}
 }

@@ -1,0 +1,164 @@
+@property --base {
+	syntax: '<color>';
+	initial-value: #f4f5dd;
+	inherits: true;
+}
+
+@property --base-content {
+	syntax: '<color>';
+	initial-value: #4A4944;
+	inherits: true;
+}
+
+@property --neutral-dark {
+	syntax: '<color>';
+	initial-value: #111111;
+	inherits: true;
+}
+
+@property --neutral-light {
+	syntax: '<color>';
+	initial-value: #eeeeee;
+	inherits: true;
+}
+
+@property --accent {
+	syntax: '<color>';
+	initial-value: #D3494E;
+	inherits: true;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+
+.chicle-regular {
+	font-family: "Chicle", serif;
+	font-weight: 400;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	font-smooth: always;
+	text-shadow: 0 0 0.25rem var(--base-content);
+}
+
+body {
+	color: var(--base-content);
+	background-color: var(--base);
+	font-family: roboto, arial, helvetica, sans-serif;
+}
+
+.bg-accent {
+	background-color: var(--accent);
+}
+
+.text-accent {
+	color: var(--accent);
+}
+
+.text-base {
+	color: var(--base);
+}
+
+fieldset {
+	border: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	legend {
+		position: absolute;
+		top: -9999rem;
+		left: -9999rem;
+	}
+
+	& > div {
+		margin-bottom: 1rem;
+		width: 50%;
+		padding: 0.5rem 1rem;
+
+		&.btn-group {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+
+	label {
+		display: block;
+	}
+
+	input {
+
+		border-radius: 4px;
+	}
+
+	input[type="color"] {
+		width: 100%;
+		height: 3rem;
+	}
+
+	.palette-name {
+		width: 100%;
+	}
+
+	input[type="text"] {
+		width: 100%;
+		padding: 0.75rem;
+		color: var(--base-content);
+		background-color: var(--base);
+		border: 5px solid var(--neutral-light);
+	}
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 0;
+	font-size: 10rem;
+}
+
+button {
+	background-color: var(--accent);
+	color: var(--base);
+	border: 1px solid var(--neutral-dark);
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	font-size: 1.25rem;
+}
+
+
+.content-box {
+	padding: 1rem;
+	max-width: 600px;
+	margin: 0 auto;
+	border-radius: 0.5rem;
+	background-color: var(--base-content);
+	color: var(--base);
+	box-shadow: 0 0 0.5rem var(--base-content);
+}
+
+/* Make inline SVG act as full-page scalable background */
+.bg-svg {
+	position: fixed;
+	inset: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1; /* behind content */
+	pointer-events: none;
+	display: block;
+}
+
+.bg-ring-outer {
+	fill: var(--base-content);
+	stroke: var(--neutral-dark);
+}
+
+.bg-ring-middle {
+	fill: var(--accent);
+	stroke: var(--neutral-dark);
+}
+
+.bg-ring-inner {
+	fill: var(--neutral-dark);
+	stroke: var(--neutral-dark);
+}

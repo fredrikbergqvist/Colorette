@@ -1,0 +1,11 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- When inlined in HTML, these can be styled via CSS variables -->
+    <ellipse class="bg-ring-outer" stroke="currentColor" ry="318" rx="342.49999" id="svg_1" cy="432.8778" cx="83.74996"
+             fill="currentColor"/>
+    <ellipse class="bg-ring-middle" stroke="currentColor" ry="279.63245" rx="317.49998" id="svg_3" cy="456.51029" cx="101.75"
+             fill="currentColor"/>
+    <ellipse class="bg-ring-inner" ry="232.99999" rx="232.99999" id="svg_4" cy="496.87779" cx="163.24995" stroke="currentColor"
+             fill="currentColor"/>
+  </g>
+</svg>

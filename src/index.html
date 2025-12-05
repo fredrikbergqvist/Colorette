@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+	<link href="https://fonts.googleapis.com" rel="preconnect">
+	<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+	<title>Colorette • Save and link your color palettes</title>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="ie=edge" http-equiv="X-UA-Compatible">
+	<meta content="A simple color palette generator that lets you save and share your color palettes." name="description">
+	<meta content="color, palette, generator, save, share" name="keywords">
+	<meta content="Fredrik Bergqvist" name="author">
+	<link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
+	<link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+<svg
+	aria-hidden="true"
+	class="bg-svg"
+	preserveAspectRatio="xMidYMid slice"
+	viewBox="0 0 800 600"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<g>
+		<ellipse class="bg-ring-outer" cx="83.74996" cy="432.8778" rx="342.49999" ry="318" />
+		<ellipse class="bg-ring-middle" cx="101.75" cy="456.51029" rx="317.49998" ry="279.63245" />
+		<ellipse class="bg-ring-inner" cx="163.24995" cy="496.87779" rx="232.99999" ry="232.99999" />
+	</g>
+</svg>
+<main>
+	<header>
+		<h1 class="chicle-regular"><span class="text-accent">Color</span><span>ette</span></h1>
+	</header>
+
+	<div class="content-box">
+		<p>A simple color palette generator that lets you save and share your color palettes.</p>
+
+		<ul>
+			<li>Try out the colors directly on the site</li>
+			<li>Save any created palettes in local storage</li>
+			<li>Save palettes in URL so they can be easily shared</li>
+		</ul>
+
+		<fieldset>
+			<legend>Color palette</legend>
+			<div class="palette-name">
+				<label for="palette-name">Palette name:</label>
+				<input id="palette-name" type="text" value="My palette" />
+			</div>
+			<div>
+				<label for="color-base">Base color:</label>
+				<input id="color-base" type="color" value="#f4f5dd" />
+			</div>
+			<div>
+				<label for="color-base-content">Base content color:</label>
+				<input id="color-base-content" type="color" value="#4A4944" />
+			</div>
+			<div>
+				<label for="color-accent">Accent color:</label>
+				<input id="color-accent" type="color" value="#ff6962" />
+			</div>
+			<div>
+
+				<label for="color-neutral-dark">Neutral dark color:</label>
+				<input id="color-neutral-dark" type="color" value="#111" />
+			</div>
+			<div>
+
+				<label for="color-neutral-light">Neutral light color:</label>
+				<input id="color-neutral-light" type="color" value="#eeeeee" />
+			</div>
+			<div class="btn-group">
+				<button id="btn-generate" type="button">Apply new palette</button>
+			</div>
+		</fieldset>
+
+	</div>
+
+</main>
+</body>
+<script src="./main.js"></script>
+
+</html>
