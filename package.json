@@ -1,0 +1,20 @@
+{
+  "name": "colorette",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/fredrikbergqvist/Colorette#readme",
+  "bugs": {
+    "url": "https://github.com/fredrikbergqvist/Colorette/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fredrikbergqvist/Colorette.git"
+  },
+  "license": "ISC",
+  "author": "Fredrik Bergqvist",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

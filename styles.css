@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  color-scheme: light dark;
+  --background-color: light-dark(#efedea, #333);
+  --text-color: light-dark(#333, #eaeaea);
+
+  --primary-color: light-dark(##587559, #357abd);
+  --secondary-color: light-dark(##e6bb2f, #1abc9c);
+  --tiertiary-color: light-dark(##eddbc1, #d35400);
+  --fourth-color: light-dark(##ec8a24, #8e44ad);
+}
+[data-theme="light"] {
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
