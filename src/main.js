@@ -1,4 +1,4 @@
-function setPalette({b, bc, a, n}) {
+function setPalette({b, bc, a, nl, nd, nm}) {
 	const root = document.documentElement;
 
 	if (b) {
@@ -13,18 +13,29 @@ function setPalette({b, bc, a, n}) {
 		root.style.setProperty("--accent", a);
 		document.getElementById("color-accent").value = a;
 	}
-	if (n) {
-		root.style.setProperty("--neutral", n);
-		document.getElementById("color-neutral").value = n;
+	if (nl) {
+		root.style.setProperty("--neutral-light", nl);
+		document.getElementById("color-neutral-light").value = nl;
 	}
+	if (nd) {
+		root.style.setProperty("--neutral-dark", nd);
+		document.getElementById("color-neutral-dark").value = nd;
+	}
+	if (nm) {
+		document.getElementById("palette-name").value = nm;
+	}
+
 }
+
 
 function loadPaletteFromUrl() {
 	const params = new URLSearchParams(window.location.search);
+	const nm = params.get("nm");
 	const b = params.get("b");
 	const bc = params.get("bc");
 	const a = params.get("a");
-	const n = params.get("n");
+	const nd = params.get("nd");
+	const nl = params.get("nl");
 
 	const normalize = (v) => (v ? (v.startsWith("#") ? v : "#" + v) : null);
 
@@ -32,7 +43,9 @@ function loadPaletteFromUrl() {
 		b: normalize(b),
 		bc: normalize(bc),
 		a: normalize(a),
-		n: normalize(n),
+		nd: normalize(nd),
+		nl: normalize(nl),
+		nm: nm || "",
 	};
 
 	if (palette.b || palette.bc || palette.a || palette.n) {
@@ -41,6 +54,32 @@ function loadPaletteFromUrl() {
 }
 
 const paletteKey = "colorette-saved-palettes"
+let savedPalettes = undefined;
+let paletteLinks = undefined;
+
+function updatePaletteCount() {
+	const paletteContainer = document.getElementById("palette-container")
+	const paletteCountElement = document.getElementById("palette-count")
+	paletteCountElement.innerHTML = savedPalettes.length
+	savedPalettes.length > 0 ? paletteContainer.classList.remove("hidden") : paletteContainer.classList.add("hidden")
+}
+
+function loadPaletteListFromLocalStorage() {
+	if (!window.localStorage) {
+		return;
+	}
+	if (!savedPalettes) {
+		const palettes = window.localStorage.getItem(paletteKey);
+		if (palettes) {
+			savedPalettes = JSON.parse(palettes);
+		}
+	}
+
+	if (savedPalettes && savedPalettes.length > 0) {
+		updatePaletteCount();
+	}
+
+}
 
 function saveToLocalStorage(params) {
 	if (!window.localStorage) {
@@ -64,15 +103,18 @@ function saveToLocalStorage(params) {
 function applyPallet() {
 	const root = document.documentElement;
 
+	const nm = document.getElementById("palette-name").value;
 	const a = document.getElementById("color-accent").value;
 	const bc = document.getElementById("color-base-content").value;
 	const b = document.getElementById("color-base").value;
-	const n = document.getElementById("color-neutral").value;
+	const nd = document.getElementById("color-neutral-dark").value;
+	const nl = document.getElementById("color-neutral-light").value;
 
 	root.style.setProperty("--accent", a);
 	root.style.setProperty("--base-content", bc);
 	root.style.setProperty("--base", b);
-	root.style.setProperty("--neutral", n);
+	root.style.setProperty("--neutral-dark", nd);
+	root.style.setProperty("--neutral-light", nl);
 
 	const stripHash = (v) => (v.startsWith("#") ? v.slice(1) : v);
 
@@ -80,7 +122,9 @@ function applyPallet() {
 	params.set("b", stripHash(b));
 	params.set("bc", stripHash(bc));
 	params.set("a", stripHash(a));
-	params.set("n", stripHash(n));
+	params.set("nd", stripHash(nd));
+	params.set("nl", stripHash(nl));
+	params.set("nm", stripHash(nm));
 
 	const newUrl =
 		window.location.pathname +
@@ -91,6 +135,8 @@ function applyPallet() {
 	window.history.replaceState(null, "", newUrl);
 }
 
+
 document.getElementById("btn-generate").addEventListener("click", applyPallet);
 
 loadPaletteFromUrl();
+loadPaletteListFromLocalStorage()

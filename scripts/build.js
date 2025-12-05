@@ -9,6 +9,7 @@ const terser = require("terser");
 // project root is one level up from scripts/
 const projectRoot = path.join(__dirname, "..");
 const srcDir = path.join(projectRoot, "src");
+const staticDir = path.join(projectRoot, "static");
 const srcHtmlPath = path.join(srcDir, "index.html");
 const srcCssPath = path.join(srcDir, "styles.css");
 const srcJsPath = path.join(srcDir, "main.js");
@@ -23,6 +24,21 @@ if (!fs.existsSync(distDir)) {
 const htmlTemplate = fs.readFileSync(srcHtmlPath, "utf8");
 const cssSource = fs.readFileSync(srcCssPath, "utf8");
 const jsSource = fs.readFileSync(srcJsPath, "utf8");
+
+function copyStaticToDist() {
+	if (!fs.existsSync(staticDir)) {
+		return;
+	}
+
+	const entries = fs.readdirSync(staticDir, {withFileTypes: true});
+	for (const entry of entries) {
+		if (!entry.isFile()) continue;
+
+		const srcPath = path.join(staticDir, entry.name);
+		const destPath = path.join(distDir, entry.name);
+		fs.copyFileSync(srcPath, destPath);
+	}
+}
 
 async function build() {
 	const cssMin = new CleanCSS({level: 2}).minify(cssSource).styles;
@@ -61,6 +77,10 @@ async function build() {
 	});
 
 	fs.writeFileSync(distHtmlPath, minifiedHtml, "utf8");
+
+	// Copy top-level files from /static into /dist (no nested static dir)
+	copyStaticToDist();
+
 	console.log("Built", path.relative(projectRoot, distHtmlPath));
 }
 

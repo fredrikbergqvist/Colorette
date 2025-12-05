@@ -86,6 +86,9 @@ fieldset {
 
 	label {
 		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: bold;
+		font-size: 1.25rem;
 	}
 
 	input {
@@ -117,7 +120,7 @@ h1 {
 	font-size: 10rem;
 }
 
-button {
+.btn {
 	background-color: var(--accent);
 	color: var(--base);
 	border: 1px solid var(--neutral-dark);
@@ -135,9 +138,52 @@ button {
 	background-color: var(--base-content);
 	color: var(--base);
 	box-shadow: 0 0 0.5rem var(--base-content);
+	position: relative;
 }
 
-/* Make inline SVG act as full-page scalable background */
+#palette-container {
+	position: absolute;
+	right: -8rem;
+	bottom: 1rem;
+	padding: 1rem;
+	border: 5px solid var(--neutral-dark);
+	border-radius: 50%;
+	background-color: var(--base-content);
+	cursor: pointer;
+	transition: background-color 0.25s ease-in-out;
+	z-index: 1;
+
+	&.hidden {
+		display: none;
+	}
+
+	&:hover {
+		background-color: var(--base-content);
+
+		svg {
+			transition: fill 0.25s ease-in-out;
+			fill: var(--base);
+		}
+	}
+
+	svg {
+		width: 4rem;
+		height: 4rem;
+		fill: var(--accent);
+	}
+
+	#palette-count {
+		position: absolute;
+		top: -1rem;
+		right: 1rem;
+		font-size: 1rem;
+		background-color: var(--accent);
+		color: var(--base);
+		padding: 0.25rem 0.5rem;
+		border-radius: 50%;
+	}
+}
+
 .bg-svg {
 	position: fixed;
 	inset: 0;
