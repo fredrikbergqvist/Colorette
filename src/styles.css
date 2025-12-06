@@ -153,6 +153,13 @@ h1 {
 	transition: background-color 0.25s ease-in-out;
 	z-index: 1;
 
+	svg {
+		width: 4rem;
+		height: 4rem;
+		fill: var(--accent);
+		transition: fill 0.25s ease-in-out;
+	}
+
 	&.hidden {
 		display: none;
 	}
@@ -161,21 +168,14 @@ h1 {
 		background-color: var(--base-content);
 
 		svg {
-			transition: fill 0.25s ease-in-out;
 			fill: var(--base);
 		}
 	}
 
-	svg {
-		width: 4rem;
-		height: 4rem;
-		fill: var(--accent);
-	}
-
 	#palette-count {
 		position: absolute;
-		top: -1rem;
-		right: 1rem;
+		top: 0.1rem;
+		right: -0.6rem;
 		font-size: 1rem;
 		background-color: var(--accent);
 		color: var(--base);
