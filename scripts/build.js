@@ -50,18 +50,23 @@ async function build() {
 	}
 	const jsMin = jsResult.code;
 
-	// Replace the (currently empty) <style>...</style> and <script>...</script>
 	let processedHtml = htmlTemplate;
 
-	// Inline CSS into first <style> tag
+	// Remove the link to ./styles.css in the built HTML
 	processedHtml = processedHtml.replace(
-		/<style>[\s\S]*?<\/style>/i,
-		`<style>${cssMin}<\/style>`,
+		/<link[^>]+href=["']\.\/styles\.css["'][^>]*>\s*/i,
+		"",
 	);
 
-	// Inline JS into first <script> tag
+	// Inject minified CSS into a new <style> tag just before </head>
 	processedHtml = processedHtml.replace(
-		/<script[^>]*>[\s\S]*?<\/script>/i,
+		/<\/head>/i,
+		`<style>${cssMin}<\/style><\/head>`,
+	);
+
+	// Inline JS into the first <script src="./main.js"> tag
+	processedHtml = processedHtml.replace(
+		/<script[^>]+src=["']\.\/main\.js["'][^>]*>[\s\S]*?<\/script>/i,
 		`<script>${jsMin}<\/script>`,
 	);
 
