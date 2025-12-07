@@ -107,7 +107,7 @@ input[type="color"] {
 }
 
 
-input[type="text"] {
+#palette-name {
 	width: 100%;
 	padding: 0.75rem;
 	color: var(--base-content);
