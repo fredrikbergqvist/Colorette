@@ -203,20 +203,19 @@ fieldset {
 	transition: opacity 300ms,
 	display 300ms allow-discrete,
 	overlay 500ms allow-discrete;
-	padding: 1rem;
 	inset: unset;
 	background-color: var(--base-content);
 	color: var(--base);
 	border-radius: 0.5rem;
 	width: 20rem;
+}
 
-	&:popover-open {
-		display: block;
-		opacity: 1;
+[popover]:popover-open {
+	display: block;
+	opacity: 1;
 
-		@starting-style {
-			opacity: 0;
-		}
+	@starting-style {
+		opacity: 0;
 	}
 }
 

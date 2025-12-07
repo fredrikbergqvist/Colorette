@@ -5,6 +5,9 @@ const path = require("path");
 const {minify: minifyHtml} = require("html-minifier-terser");
 const CleanCSS = require("clean-css");
 const terser = require("terser");
+const postcss = require("postcss");
+const postcssPresetEnv = require("postcss-preset-env");
+const postcssNesting = require("postcss-nesting");
 
 // project root is one level up from scripts/
 const projectRoot = path.join(__dirname, "..");
@@ -41,7 +44,19 @@ function copyStaticToDist() {
 }
 
 async function build() {
-	const cssMin = new CleanCSS({level: 2}).minify(cssSource).styles;
+	// Process CSS through PostCSS to handle nesting and modern syntax
+	const postcssResult = await postcss([
+		postcssNesting(),
+		postcssPresetEnv({
+			stage: 1,
+			features: {
+				"nesting-rules": true,
+			},
+		}),
+	]).process(cssSource, {from: undefined});
+
+	const cssTransformed = postcssResult.css;
+	const cssMin = new CleanCSS({level: 2}).minify(cssTransformed).styles;
 
 	const jsResult = await terser.minify(jsSource, {toplevel: false});
 	if (jsResult.error) {
