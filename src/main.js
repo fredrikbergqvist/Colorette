@@ -1,4 +1,14 @@
-function setPalette({b, bc, a, nl, nd, nm}) {
+/**
+ * @typedef {Object} Palette
+ * @property {string} b Base
+ * @property {string} bc Base content
+ * @property {string} a Accent
+ * @property {string} nd Neutral dark
+ * @property {string} nl Neutral light
+ * @property {string} nm Name
+ */
+
+function setPaletteInputs({b, bc, a, nl, nd, nm}) {
 	const root = document.documentElement;
 
 	if (b) {
@@ -49,34 +59,62 @@ function loadPaletteFromUrl() {
 	};
 
 	if (palette.b || palette.bc || palette.a || palette.n) {
-		setPalette(palette);
+		setPaletteInputs(palette);
 	}
 }
 
 const paletteKey = "colorette-saved-palettes"
+/** @type {Palette[]} nullable */
 let savedPalettes = undefined;
 let paletteLinks = undefined;
 
+/**
+ * Get the saved palettes from local storage
+ * @returns {Palette[]}
+ */
+function getSavedPalettesFromLocalStorage() {
+	if (!window.localStorage) {
+		return [];
+	}
+	const savedPalettes = window.localStorage.getItem(paletteKey);
+	if (savedPalettes) {
+		return JSON.parse(savedPalettes);
+	}
+	return [];
+}
+
 function updatePaletteCount() {
-	const paletteContainer = document.getElementById("palette-container")
+	const paletteContainer = document.getElementById("toggle-saved-palettes")
 	const paletteCountElement = document.getElementById("palette-count")
 	paletteCountElement.innerHTML = savedPalettes.length
 	savedPalettes.length > 0 ? paletteContainer.classList.remove("hidden") : paletteContainer.classList.add("hidden")
 }
 
-function loadPaletteListFromLocalStorage() {
-	if (!window.localStorage) {
+function writePaletteSwatches() {
+	if (!savedPalettes) {
 		return;
 	}
-	if (!savedPalettes) {
-		const palettes = window.localStorage.getItem(paletteKey);
-		if (palettes) {
-			savedPalettes = JSON.parse(palettes);
-		}
-	}
+	const listElement = document.getElementById("saved-palettes-list");
+	const markup = savedPalettes.map(p => {
+		return `<div class="saved-palette" style="background-color: ${p.b}">
+			<div class="color-swatch" style="background-color: ${p.a}"></div>
+			<div class="color-swatch" style="background-color: ${p.bc}"></div>
+			<div class="color-swatch" style="background-color: ${p.nl}"></div>
+			<div class="color-swatch" style="background-color: ${p.nd}"></div>
 
+			${p.nm}
+		</div>`
+	})
+
+	listElement.innerHTML = markup.join("");
+
+}
+
+function loadPaletteListFromLocalStorage() {
+	savedPalettes = getSavedPalettesFromLocalStorage();
 	if (savedPalettes && savedPalettes.length > 0) {
 		updatePaletteCount();
+		writePaletteSwatches();
 	}
 
 }
@@ -100,9 +138,12 @@ function saveToLocalStorage(params) {
 	//TODO: Add a saved toast
 }
 
-function applyPallet() {
-	const root = document.documentElement;
 
+/**
+ * Get the current pallet values from the UI
+ * @returns {Palette}
+ */
+function getPaletteFromForm() {
 	const nm = document.getElementById("palette-name").value;
 	const a = document.getElementById("color-accent").value;
 	const bc = document.getElementById("color-base-content").value;
@@ -110,11 +151,34 @@ function applyPallet() {
 	const nd = document.getElementById("color-neutral-dark").value;
 	const nl = document.getElementById("color-neutral-light").value;
 
+	return {b, bc, a, nd, nl, nm};
+}
+
+/**
+ * Apply the current pallet values to the page
+ * @param {Palette} [palette]
+ */
+function applyPaletteToPage(palette = getPaletteFromForm()) {
+	const {b, bc, a, nd, nl, nm} = palette;
+
+	const root = document.documentElement;
 	root.style.setProperty("--accent", a);
 	root.style.setProperty("--base-content", bc);
 	root.style.setProperty("--base", b);
 	root.style.setProperty("--neutral-dark", nd);
 	root.style.setProperty("--neutral-light", nl);
+
+}
+
+/**
+ * Update the URL to reflect the current pallet values
+ * @param {Palette} [palette]
+
+ */
+
+function updatePageUrl(palette = getPaletteFromForm()) {
+
+	const {b, bc, a, nd, nl, nm} = palette;
 
 	const stripHash = (v) => (v.startsWith("#") ? v.slice(1) : v);
 
@@ -131,12 +195,29 @@ function applyPallet() {
 		"?" +
 		params.toString() +
 		window.location.hash;
-	saveToLocalStorage(params.toString())
-	window.history.replaceState(null, "", newUrl);
+
+	window.history.pushState(null, "", newUrl);
 }
 
+function applyPalette() {
 
-document.getElementById("btn-generate").addEventListener("click", applyPallet);
+	const palette = getPaletteFromForm();
+
+	applyPaletteToPage(palette);
+}
+
+function savePallet() {
+	const palette = getPaletteFromForm();
+	updatePageUrl(palette);
+	saveToLocalStorage(palette);
+}
+
+document.getElementById("color-accent").addEventListener("input", applyPalette);
+document.getElementById("color-base").addEventListener("input", applyPalette);
+document.getElementById("color-base-content").addEventListener("input", applyPalette);
+document.getElementById("color-neutral-dark").addEventListener("input", applyPalette);
+document.getElementById("color-neutral-light").addEventListener("input", applyPalette);
+document.getElementById("btn-generate").addEventListener("click", savePallet);
 
 loadPaletteFromUrl();
 loadPaletteListFromLocalStorage()
