@@ -91,27 +91,28 @@ fieldset {
 		font-size: 1.25rem;
 	}
 
-	input {
-
-		border-radius: 4px;
-	}
-
-	input[type="color"] {
-		width: 100%;
-		height: 3rem;
-	}
-
 	.palette-name {
 		width: 100%;
 	}
 
-	input[type="text"] {
-		width: 100%;
-		padding: 0.75rem;
-		color: var(--base-content);
-		background-color: var(--base);
-		border: 5px solid var(--neutral-light);
-	}
+}
+
+input {
+	border-radius: 4px;
+}
+
+input[type="color"] {
+	width: 100%;
+	height: 3rem;
+}
+
+
+input[type="text"] {
+	width: 100%;
+	padding: 0.75rem;
+	color: var(--base-content);
+	background-color: var(--base);
+	border: 5px solid var(--neutral-light);
 }
 
 .main-heading {
