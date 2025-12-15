@@ -220,22 +220,28 @@ input[type="color"] {
 	}
 }
 
-.saved-palette {
+.saved-palette-list {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	background-color: #fff;
+
+	.color-swatch {
+		display: inline-block;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.25rem;
+		border: 1px solid #000;
+	}
+
+	.palette-name {
+		border-radius: 0.25rem;
+		padding: 0.4rem;
+	}
 }
 
-.color-swatch {
-	display: inline-block;
-	width: 2rem;
-	height: 2rem;
-	border-radius: 0.25rem;
-	border: 1px solid #000;
-}
 
 .bg-svg {
 	position: fixed;

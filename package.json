@@ -15,9 +15,9 @@
 	"type": "commonjs",
 	"main": "index.js",
 	"scripts": {
-		"build": "node scripts/build.js",
-		"dev": "live-server --no-browser --wait=200 --port=4173 ./src/",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
 	},
 	"devDependencies": {
 		"clean-css": "^5.3.3",
