@@ -220,13 +220,14 @@ input[type="color"] {
 	}
 }
 
-.saved-palette-list {
+.saved-palette-item {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	background-color: #fff;
+	margin-bottom: 0.5rem;
 
 	.color-swatch {
 		display: inline-block;

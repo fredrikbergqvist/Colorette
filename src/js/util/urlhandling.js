@@ -27,7 +27,11 @@ export function savePaletteToUrl(palette) {
 	window.history.pushState(null, "", newUrl);
 }
 
-export function loadPaletteFromUrl() {
+/**
+ *
+ * @returns {Palette}
+ */
+export function getPaletteFromUrl() {
 	const params = new URLSearchParams(window.location.search);
 	const nm = params.get("nm");
 	const b = params.get("b");
@@ -46,7 +50,11 @@ export function loadPaletteFromUrl() {
 		nl: normalize(nl),
 		nm: nm || "",
 	};
+	return palette
+}
 
+export function loadPaletteFromUrl() {
+	const palette = getPaletteFromUrl();
 	if (palette.b || palette.bc || palette.a || palette.n) {
 		setPaletteInputs(palette);
 	}
