@@ -1,4 +1,5 @@
 import {defineConfig} from "vite";
+import {VitePWA} from "vite-plugin-pwa";
 
 export default defineConfig({
 	root: "src",
@@ -10,8 +11,8 @@ export default defineConfig({
 	plugins: [
 		{
 			name: "inline-css",
-			enforce: "post",
 			apply: "build",
+			enforce: "post",
 			generateBundle(options, bundle) {
 				const htmlFile = Object.values(bundle).find(file => file.fileName.endsWith(".html"));
 				if (!htmlFile) return;
@@ -42,5 +43,27 @@ export default defineConfig({
 				htmlFile.source = html;
 			},
 		},
+		VitePWA({
+			registerType: "autoUpdate",
+			manifest: {
+				name: "Colorette",
+				short_name: "Colorette",
+				description: "A simple color palette generator that lets you save and share your color palettes.",
+				start_url: "/",
+				display: "standalone",
+				background_color: "#f4f5dd",
+				theme_color: "#D3494E",
+				icons: [
+					{
+						src: "/icon.svg",
+						sizes: "any",
+						type: "image/svg+xml",
+					},
+				],
+			},
+			workbox: {
+				globPatterns: ["**/*.{js,css,html,svg,png,jpg}"],
+			},
+		}),
 	],
 });

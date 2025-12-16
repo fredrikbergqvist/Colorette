@@ -12,7 +12,11 @@ import {getSavedPalettes} from "./util/palettes";
 import {loadPaletteFromUrl} from "./util/urlhandling";
 import {registerInputListeners} from "./util/forms"
 import {inject} from "@vercel/analytics";
+import {registerSW} from "virtual:pwa-register"
 
+if (import.meta.env.PROD) {
+	registerSW({immediate: true})
+}
 
 function init() {
 	window.colorette = {
