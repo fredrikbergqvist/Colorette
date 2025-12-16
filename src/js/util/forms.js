@@ -11,8 +11,10 @@ export function getPaletteFromForm() {
 	const b = document.getElementById("color-base").value;
 	const nd = document.getElementById("color-neutral-dark").value;
 	const nl = document.getElementById("color-neutral-light").value;
+	const p = document.getElementById("color-primary").value;
+	const s = document.getElementById("color-secondary").value;
 
-	return {b, bc, a, nd, nl, nm};
+	return {b, bc, a, nd, nl, nm, p, s};
 }
 
 /**
@@ -20,7 +22,7 @@ export function getPaletteFromForm() {
  * @param palette {Palette}
  */
 export function setPaletteInputs(palette) {
-	const {b, bc, a, nd, nl, nm} = palette;
+	const {b, bc, a, nd, nl, nm, p, s} = palette;
 	const root = document.documentElement;
 
 	if (b) {
@@ -45,6 +47,14 @@ export function setPaletteInputs(palette) {
 	}
 	if (nm) {
 		document.getElementById("palette-name").value = nm;
+	}
+	if (p) {
+		root.style.setProperty("--primary", p);
+		document.getElementById("color-primary").value = p;
+	}
+	if (s) {
+		root.style.setProperty("--secondary", s);
+		document.getElementById("color-secondary").value = s;
 	}
 }
 

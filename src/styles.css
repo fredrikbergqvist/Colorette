@@ -22,6 +22,16 @@
 	inherits: true;
 }
 
+@property --primary {
+	syntax: '<color>';
+	initial-value: #0070f3;
+}
+
+@property --secondary {
+	syntax: '<color>';
+	initial-value: #00c48f;
+}
+
 @property --accent {
 	syntax: '<color>';
 	initial-value: #D3494E;
@@ -260,7 +270,7 @@ input[type="color"] {
 }
 
 .bg-ring-outer {
-	fill: var(--base-content);
+	fill: var(--primary);
 	stroke: var(--neutral-dark);
 }
 
@@ -270,6 +280,6 @@ input[type="color"] {
 }
 
 .bg-ring-inner {
-	fill: var(--neutral-dark);
+	fill: var(--secondary);
 	stroke: var(--neutral-dark);
 }
