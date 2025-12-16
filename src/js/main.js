@@ -10,7 +10,8 @@
 import {registerComponents} from "./components/register";
 import {getSavedPalettes} from "./util/palettes";
 import {loadPaletteFromUrl} from "./util/urlhandling";
-import {registerInputListeners} from "./util/forms";
+import {registerInputListeners} from "./util/forms"
+import {inject} from "@vercel/analytics";
 
 
 function init() {
@@ -21,7 +22,7 @@ function init() {
 	registerInputListeners();
 	loadPaletteFromUrl();
 	getSavedPalettes();
-
+	inject();
 }
 
 init();
