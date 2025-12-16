@@ -2,7 +2,7 @@
 	"name": "colorette",
 	"version": "1.0.0",
 	"description": "",
-	"homepage": "https://github.com/fredrikbergqvist/Colorette#readme",
+	"homepage": "https://colorette.narv.io",
 	"bugs": {
 		"url": "https://github.com/fredrikbergqvist/Colorette/issues"
 	},
@@ -24,9 +24,7 @@
 	},
 	"devDependencies": {
 		"vite": "7.3.0",
-		"clean-css": "^5.3.3",
 		"postcss": "^8.4.49",
-		"postcss-css-variables": "^0.19.0",
 		"postcss-nesting": "^12.1.5",
 		"postcss-preset-env": "^10.0.6"
 	}
