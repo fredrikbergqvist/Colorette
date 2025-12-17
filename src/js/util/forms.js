@@ -1,4 +1,5 @@
 import {applyPaletteToPage, savePalette} from "./palettes";
+import {EVENTS} from "./events";
 
 /**
  * Get the current pallet values from the UI
@@ -59,7 +60,6 @@ export function setPaletteInputs(palette) {
 }
 
 function applyPalette() {
-
 	const palette = getPaletteFromForm();
 
 	applyPaletteToPage(palette);
@@ -77,6 +77,14 @@ export function registerInputListeners() {
 	document.getElementById("color-base-content").addEventListener("input", applyPalette);
 	document.getElementById("color-neutral-dark").addEventListener("input", applyPalette);
 	document.getElementById("color-neutral-light").addEventListener("input", applyPalette);
+	document.getElementById("color-primary").addEventListener("input", applyPalette);
+	document.getElementById("color-secondary").addEventListener("input", applyPalette);
 	document.getElementById("btn-generate").addEventListener("click", handleSavePalette);
-
+	document.getElementById("toggle-saved-palettes").addEventListener("click", function () {
+		window.dispatchEvent(new Event(EVENTS.toggleSavedPalettePanel));
+		console["log"]("🦖: dispatch toggle saved palettes");
+	});
+	document.getElementById("theme-toggle-btn").addEventListener("click", function () {
+		window.dispatchEvent(new Event(EVENTS.toggleThemePanel));
+	})
 }

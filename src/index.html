@@ -1,4 +1,4 @@
-<html lang="en">
+<html data-theme="circles" lang="en">
 <head>
 	<link href="https://fonts.googleapis.com" rel="preconnect">
 	<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
@@ -36,7 +36,7 @@
 <body>
 <svg
 	aria-hidden="true"
-	class="bg-svg"
+	class="svg-bg circles-bg-svg"
 	preserveAspectRatio="xMidYMid slice"
 	viewBox="0 0 800 600"
 	xmlns="http://www.w3.org/2000/svg"
@@ -47,28 +47,121 @@
 		<ellipse class="bg-ring-inner" cx="163.24995" cy="496.87779" rx="232.99999" ry="232.99999" />
 	</g>
 </svg>
+
+
+<svg aria-hidden="true"
+		 class="arc-bg-svg svg-bg"
+		 viewBox="0 0 240.76 193.33"
+		 xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<style>
+
+			.ml-lo, .r-lo, .l-m, .mr-ro, .rect, .ml-m, .ml-ro, .mr-m, .r-m, .r-ro, .mr-lo, .l-lo, .l-ro {
+				fill: none;
+			}
+
+			.ml-lo, .r-lo, .l-m, .mr-ro, .ml-m, .ml-ro, .mr-m, .r-m, .r-ro, .mr-lo, .l-lo, .l-ro {
+				stroke-miterlimit: 10;
+			}
+
+			.ml-lo, .r-lo, .mr-ro, .ml-ro, .r-ro, .mr-lo, .l-lo, .l-ro {
+				stroke-width: 4px;
+			}
+
+			.l-m, .ml-m, .mr-m, .r-m {
+				fill-rule: evenodd;
+				stroke-width: 22px;
+			}
+
+			/*middle left, main color*/
+			.ml-m {
+				stroke: var(--base-content);
+			}
+
+			/*middle left, outline*/
+			.ml-lo,
+			.ml-ro {
+				stroke: var(--base-content);
+				opacity: 0.8;
+			}
+
+			/*middle right, main color*/
+			.mr-m {
+				stroke: var(--accent);
+			}
+
+			/*middle right,  outlines*/
+			.mr-lo,
+			.mr-ro {
+				stroke: var(--accent);
+				opacity: 0.8;
+			}
+
+
+			/*rightmost, main color*/
+			.r-m {
+				stroke: var(--secondary);
+			}
+
+			/*rightmost,  outline*/
+			.r-lo,
+			.r-ro {
+				stroke: var(--secondary);
+				opacity: 0.8;
+			}
+
+			/*leftmost main color*/
+			.l-m {
+				stroke: var(--primary);
+			}
+
+			/*leftmost,  outline */
+			.l-lo,
+			.l-ro {
+				stroke: var(--primary);
+				opacity: 0.8;
+			}
+
+			.group {
+				clip-path: url(#clippath);
+			}
+		</style>
+		<clipPath id="clippath">
+			<rect class="rect" height="193.33" width="240.76" />
+		</clipPath>
+	</defs>
+	<g>
+		<g class="group">
+			<g>
+				<path class="r-lo"
+							d="M1051.99,424.52h-486.37c-69.12,0-136.98-18.82-196.23-54.42-59.25-35.6-107.72-86.68-140.17-147.71L-189.53-565.17" />
+				<path class="r-ro" d="M-170.11-575.5L248.64,212.06c62.47,117.48,183.92,190.46,316.98,190.46h486.37" />
+				<path class="mr-lo" d="M1055.49,564.52h-499.75c-54.61,0-108.22-14.87-155.03-42.99s-85.1-68.48-110.74-116.7L-160.7-442.78" />
+				<path class="mr-ro" d="M-141.28-453.11L309.4,394.5c48.55,91.3,142.94,148.02,246.34,148.02h499.75" />
+				<path class="ml-lo"
+							d="M-505.01,982.52h210.47c182.09,0,346.8-93.19,440.58-249.27,93.79-156.08,98.74-345.26,13.25-506.04l-459.36-863.93" />
+				<path class="ml-ro"
+							d="M-280.64-647.05L178.72,216.88c23.14,43.52,40.21,89.38,50.73,136.3,10.1,45.06,14.23,91.29,12.25,137.4-3.81,88.89-30.37,176.72-76.8,254s-111.52,141.96-188.21,187.05c-39.78,23.39-82.53,41.45-127.07,53.69-46.38,12.74-94.88,19.2-144.17,19.2h-210.47" />
+				<path class="l-ro"
+							d="M-538.17,700.52h137.29c44.23,0,87.75-5.8,129.37-17.23,39.97-10.98,78.33-27.19,114.03-48.18,68.83-40.47,127.23-98.51,168.9-167.86,41.67-69.35,65.5-148.16,68.92-227.93,1.77-41.38-1.93-82.86-11-123.3C59.89,73.9,44.57,32.75,23.81-6.3l-403.01-757.95" />
+				<path class="l-lo"
+							d="M-398.62-753.92L4.39,4.03C80.73,147.6,76.3,316.54-7.45,455.92c-83.75,139.38-230.83,222.6-393.44,222.6h-137.29" />
+				<path class="r-m" d="M1051.99,413.52h-486.37c-136.81,0-262.46-75.5-326.69-196.3L-179.82-570.34" />
+				<path class="mr-m" d="M1055.49,553.52h-499.75c-107.23,0-205.71-59.17-256.05-153.85L-150.99-447.95" />
+				<path class="ml-m" d="M-290.35-641.88L169.01,222.04c185.93,349.68-67.51,771.47-463.55,771.47h-210.47" />
+				<path class="l-m" d="M-388.91-759.09L14.1-1.13c166.45,313.05-60.43,690.65-414.99,690.65h-137.29" />
+			</g>
+		</g>
+	</g>
+</svg>
+
+<header>
+	<h1 class="chicle-regular main-heading"><span class="text-accent">Color</span><span>ette</span></h1>
+</header>
 <main>
-	<header>
-		<h1 class="chicle-regular main-heading"><span class="text-accent">Color</span><span>ette</span></h1>
-	</header>
 
 	<div class="content-box">
 		<p>A simple color palette generator that lets you save and share your color palettes.</p>
-
-		<ul>
-			<li>✅ Try out the colors directly on the site</li>
-			<li>✅ Save any created palettes in local storage</li>
-			<li>✅ Save palettes in URL so they can be easily shared</li>
-			<li>✅ Show saved palettes in a popup (button in place)
-				<ul>
-					<li>✅ Show the palette with all colors as swatches</li>
-					<li>❌ Hover over to change style on page, but not update the input values</li>
-				</ul>
-			</li>
-			<li>❌ Redo background and add more backgrounds</li>
-			<li>❌ Add a tab/second view with all colors clearly visible by hex value etc</li>
-			<li>❌ Use web components and events</li>
-		</ul>
 
 		<fieldset>
 			<legend>Color palette</legend>
@@ -82,11 +175,11 @@
 			</div>
 			<div>
 				<label for="color-primary">Primary color:</label>
-				<input id="color-primary" type="color" value="#999999" />
+				<input id="color-primary" type="color" value="#c2a056" />
 			</div>
 			<div>
 				<label for="color-secondary">Secondary color:</label>
-				<input id="color-secondary" type="color" value="#000000" />
+				<input id="color-secondary" type="color" value="#5a696a" />
 			</div>
 			<div>
 				<label for="color-accent">Accent color:</label>
@@ -111,20 +204,27 @@
 			</div>
 		</fieldset>
 
-		<div class="side-menu" id="saved-palettes-menu" popover>
-			<h3>Saved palettes</h3>
-			<saved-palettes></saved-palettes>
-		</div>
-
-		<button id="toggle-saved-palettes" popovertarget="saved-palettes-menu" type="button">
-			<saved-palette-counter></saved-palette-counter>
-			<svg height="42" viewBox="0 0 24 24" width="42" xmlns="http://www.w3.org/2000/svg">
-				<path
-					d="M23.305 16.25a1.89 1.89 0 0 1-1.377 1.177 1.91 1.91 0 0 1-1.769-.521l-.1-.1a3.567 3.567 0 0 0-6.089 2.553l.04 4.516-.924.077c-.331.028-.663.05-1 .05A12 12 0 0 1 3.745 3.371 11.89 11.89 0 0 1 12.5.007 12.155 12.155 0 0 1 24.08 11.7a11.9 11.9 0 0 1-.775 4.55m-6.19-8.2a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065m-5-3a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065m-5 3A1.5 1.5 0 1 0 8.95 9.115 1.5 1.5 0 0 0 7.115 8.05m0 6a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065" />
-			</svg>
-		</button>
-
+		<nav class="button-menu">
+			<button aria-label="Toggle saved palettes panel" id="toggle-saved-palettes" type="button">
+				<saved-palette-counter></saved-palette-counter>
+				<svg aria-hidden="true" height="42" viewBox="0 0 24 24" width="42" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M23.305 16.25a1.89 1.89 0 0 1-1.377 1.177 1.91 1.91 0 0 1-1.769-.521l-.1-.1a3.567 3.567 0 0 0-6.089 2.553l.04 4.516-.924.077c-.331.028-.663.05-1 .05A12 12 0 0 1 3.745 3.371 11.89 11.89 0 0 1 12.5.007 12.155 12.155 0 0 1 24.08 11.7a11.9 11.9 0 0 1-.775 4.55m-6.19-8.2a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065m-5-3a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065m-5 3A1.5 1.5 0 1 0 8.95 9.115 1.5 1.5 0 0 0 7.115 8.05m0 6a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065" />
+				</svg>
+			</button>
+			<button aria-label="Toggle theme panel" id="theme-toggle-btn" type="button">
+				<svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M0 9.756h14V15H0zm0 8c0 2.757 2.243 5 5 5h9V17H0zm16 5h3c2.757 0 5-2.243 5-5v-8h-8zM24 6v2H0V6c0-2.757 2.243-5 5-5h14c2.757 0 5 2.243 5 5M6 4.5a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 6 4.5m4 0a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 10 4.5m4 0a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 14 4.5" />
+				</svg>
+			</button>
+		</nav>
 	</div>
+	<aside>
+		<saved-palettes></saved-palettes>
+		<theme-selector></theme-selector>
+	</aside>
+
 </main>
 
 </body>

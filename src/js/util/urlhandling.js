@@ -6,7 +6,7 @@ import {setPaletteInputs} from "./forms";
  */
 export function savePaletteToUrl(palette) {
 
-	const {b, bc, a, nd, nl, nm} = palette;
+	const {b, bc, a, nd, nl, nm, p, s} = palette;
 
 	const stripHash = (v) => (v.startsWith("#") ? v.slice(1) : v);
 
@@ -17,6 +17,8 @@ export function savePaletteToUrl(palette) {
 	params.set("nd", stripHash(nd));
 	params.set("nl", stripHash(nl));
 	params.set("nm", stripHash(nm));
+	params.set("p", stripHash(palette.p));
+	params.set("s", stripHash(palette.s));
 
 	const newUrl =
 		window.location.pathname +
@@ -39,18 +41,21 @@ export function getPaletteFromUrl() {
 	const a = params.get("a");
 	const nd = params.get("nd");
 	const nl = params.get("nl");
+	const p = params.get("p");
+	const s = params.get("s");
 
 	const normalize = (v) => (v ? (v.startsWith("#") ? v : "#" + v) : null);
 
-	const palette = {
+	return {
 		b: normalize(b),
 		bc: normalize(bc),
 		a: normalize(a),
 		nd: normalize(nd),
 		nl: normalize(nl),
+		p: normalize(p),
+		s: normalize(s),
 		nm: nm || "",
-	};
-	return palette
+	}
 }
 
 export function loadPaletteFromUrl() {

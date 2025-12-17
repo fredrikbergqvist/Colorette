@@ -32,7 +32,7 @@ export function savePalette(palette) {
  * @param {Palette} palette
  */
 export function applyPaletteToPage(palette) {
-	const {b, bc, a, nd, nl, nm} = palette;
+	const {b, bc, a, nd, nl, p, s} = palette;
 
 	const root = document.documentElement;
 	root.style.setProperty("--accent", a);
@@ -40,5 +40,7 @@ export function applyPaletteToPage(palette) {
 	root.style.setProperty("--base", b);
 	root.style.setProperty("--neutral-dark", nd);
 	root.style.setProperty("--neutral-light", nl);
+	root.style.setProperty("--primary", p);
+	root.style.setProperty("--secondary", s);
 
 }

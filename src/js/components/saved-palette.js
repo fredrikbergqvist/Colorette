@@ -3,7 +3,7 @@ import {getPaletteFromUrl, savePaletteToUrl} from "../util/urlhandling";
 import {setPaletteInputs} from "../util/forms";
 
 export class SavedPalette extends HTMLElement {
-	static observedAttributes = ["nm", "a", "b", "bc", "nd", "nl"];
+	static observedAttributes = ["nm", "a", "b", "bc", "nd", "nl", "p", "s"];
 	activePalette;
 
 	#render() {
@@ -13,19 +13,27 @@ export class SavedPalette extends HTMLElement {
 		const bc = this.getAttribute("bc");
 		const nd = this.getAttribute("nd");
 		const nl = this.getAttribute("nl");
+		const p = this.getAttribute("p");
+		const s = this.getAttribute("s");
 		if (!b || !bc || !nd || !nl) return "";
-		return `<div class="saved-palette-item">
+		return `<div class="saved-palette-item" tabindex="0" role="button" aria-label="Select saved palette ${nm}">
+		<div class="palette-name" style="color: ${bc};background-color: ${b}"> ${nm}</div>
 			<div class="color-swatch" style="background-color: ${a}"></div>
+			<div class="color-swatch" style="background-color: ${p}"></div>
+			<div class="color-swatch" style="background-color: ${s}"></div>
 			<div class="color-swatch" style="background-color: ${b}"></div>
 			<div class="color-swatch" style="background-color: ${bc}"></div>
 			<div class="color-swatch" style="background-color: ${nl}"></div>
 			<div class="color-swatch" style="background-color: ${nd}"></div>
-		<div class="palette-name" style="color: ${bc};background-color: ${b}"> ${nm}</div>
 		</div>`
 	}
 
+	/**
+	 * @returns {Palette}
+	 */
 	#previewOnPage() {
 		this.activePalette = getPaletteFromUrl()
+		/** type {Palette} */
 		const newPalette = {
 			a: this.getAttribute("a"),
 			b: this.getAttribute("b"),
@@ -33,6 +41,8 @@ export class SavedPalette extends HTMLElement {
 			nd: this.getAttribute("nd"),
 			nl: this.getAttribute("nl"),
 			nm: this.getAttribute("nm"),
+			p: this.getAttribute("p"),
+			s: this.getAttribute("s"),
 		}
 		applyPaletteToPage(newPalette);
 		return newPalette;
@@ -56,6 +66,7 @@ export class SavedPalette extends HTMLElement {
 		this.querySelector(".saved-palette-item").addEventListener("mouseenter", this.#previewOnPage.bind(this));
 		this.querySelector(".saved-palette-item").addEventListener("mouseleave", this.#restorePage.bind(this));
 		this.querySelector(".saved-palette-item").addEventListener("click", this.#selectPalette.bind(this));
+		this.querySelector(".saved-palette-item").addEventListener("keydown", (e) => e.key === "Enter" && this.#selectPalette())
 	}
 
 	disconnectedCallback() {

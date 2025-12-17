@@ -24,12 +24,14 @@
 
 @property --primary {
 	syntax: '<color>';
-	initial-value: #0070f3;
+	initial-value: #c2a056;
+	inherits: true;
 }
 
 @property --secondary {
 	syntax: '<color>';
-	initial-value: #00c48f;
+	initial-value: #5a696a;
+	inherits: true;
 }
 
 @property --accent {
@@ -42,6 +44,10 @@
 	box-sizing: border-box;
 }
 
+body {
+
+	margin: 0;
+}
 
 .chicle-regular {
 	font-family: "Chicle", serif;
@@ -107,6 +113,17 @@ fieldset {
 
 }
 
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
 input {
 	border-radius: 4px;
 }
@@ -138,13 +155,21 @@ input[type="color"] {
 	border-radius: 4px;
 	padding: 0.5rem 1rem;
 	font-size: 1.25rem;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 0 0.5rem var(--neutral-dark);
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
 }
 
 
 .content-box {
 	padding: 1rem;
 	max-width: 600px;
-	margin: 0 auto;
 	border-radius: 0.5rem;
 	background-color: var(--base-content);
 	color: var(--base);
@@ -152,93 +177,114 @@ input[type="color"] {
 	position: relative;
 }
 
-#toggle-saved-palettes {
+.button-menu {
 	position: absolute;
-	right: -8rem;
-	bottom: 1rem;
-	padding: 1rem;
-	border: 5px solid var(--neutral-dark);
-	border-radius: 50%;
+	bottom: -6rem;
+	left: 0;
 	background-color: var(--base-content);
-	cursor: pointer;
-	transition: background-color 0.25s ease-in-out;
-	z-index: 1;
-	/*anchor-name: --toggle-saved-palettes;*/
+	padding: 1rem;
+	border-radius: 0.5rem;
+	max-width: 600px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	gap: 1rem;
 
-	svg {
-		width: 4rem;
-		height: 4rem;
-		fill: var(--accent);
-		transition: fill 0.25s ease-in-out;
-	}
+	button {
+		padding: 0.25rem;
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		transition: background-color 0.25s ease-in-out;
+		z-index: 1;
+		position: relative;
 
-	&.hidden {
-		display: none;
-	}
+		&:active {
+			transform: scale(0.95);
+		}
 
-	&:hover {
-		background-color: var(--base-content);
+		&:hover {
+			svg {
+				fill: var(--secondary);
+			}
+		}
 
 		svg {
-			fill: var(--base);
+			width: 2.5rem;
+			height: 2.5rem;
+			fill: var(--primary);
+			transition: fill 0.25s ease-in-out;
 		}
 	}
+}
 
-	&:active {
-		transform: scale(0.95);
+
+#palette-count {
+	position: absolute;
+	top: -0.5rem;
+	right: -0.4rem;
+	font-size: 1rem;
+	background-color: var(--accent);
+	color: var(--base);
+	padding: 0.25rem 0.5rem;
+	border-radius: 50%;
+	transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+	@starting-style {
+		transform: scale(0);
 	}
+}
 
-	#palette-count {
-		position: absolute;
-		top: 0.1rem;
-		right: -0.6rem;
-		font-size: 1rem;
-		background-color: var(--accent);
-		color: var(--base);
-		padding: 0.25rem 0.5rem;
-		border-radius: 50%;
-		transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+main {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 1rem;
+}
 
-		@starting-style {
-			transform: scale(0);
-		}
-	}
+aside {
+	padding: 0;
 }
 
 .side-menu {
-	position: absolute;
-	left: calc(50vw + 332px) !important;
-	top: 12.5rem !important;
-	box-shadow: 0 0 0.5rem var(--base-content);
-	border: none;
-}
-
-[popover] {
-	display: none;
-	opacity: 0;
-	transition: opacity 300ms,
-	display 300ms allow-discrete,
-	overlay 500ms allow-discrete;
-	inset: unset;
+	width: 20rem;
+	border-radius: 0.5rem;
 	background-color: var(--base-content);
 	color: var(--base);
-	border-radius: 0.5rem;
-	width: 20rem;
-}
-
-[popover]:popover-open {
-	display: block;
+	box-shadow: 0 0 0.5rem var(--base-content);
+	padding: 0.5rem 1rem 1rem;
+	border: none;
+	transition: opacity 300ms allow-discrete;
 	opacity: 1;
+	margin-bottom: 1rem;
 
 	@starting-style {
 		opacity: 0;
 	}
+
+	h3 {
+		text-align: center;
+	}
+}
+
+#theme-menu {
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 0.5rem;
+	}
+
+
 }
 
 .saved-palette-item {
 	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
+	gap: 0.25rem;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	background-color: #fff;
@@ -255,31 +301,60 @@ input[type="color"] {
 	.palette-name {
 		border-radius: 0.25rem;
 		padding: 0.4rem;
+		width: 100%;
 	}
 }
 
+/***** BACKGROUNDS ******/
+.circles-bg-svg, .arc-bg-svg {
+	height: 0;
+	width: 0;
+	left: -9999rem;
+}
 
-.bg-svg {
+.svg-bg {
 	position: fixed;
-	inset: 0;
 	width: 100vw;
 	height: 100vh;
 	z-index: -1; /* behind content */
 	pointer-events: none;
 	display: block;
+
 }
 
-.bg-ring-outer {
-	fill: var(--primary);
-	stroke: var(--neutral-dark);
+[data-theme="circles"] {
+	.circles-bg-svg {
+		inset: 0;
+	}
+
+	.bg-ring-outer {
+		fill: var(--primary);
+		stroke: var(--neutral-dark);
+	}
+
+	.bg-ring-middle {
+		fill: var(--accent);
+		stroke: var(--neutral-dark);
+	}
+
+	.bg-ring-inner {
+		fill: var(--secondary);
+		stroke: var(--neutral-dark);
+	}
 }
 
-.bg-ring-middle {
-	fill: var(--accent);
-	stroke: var(--neutral-dark);
+[data-theme="arc"] {
+	header {
+		background-color: var(--base);
+		opacity: 0.8;
+		margin-bottom: 1rem;
+	}
+
+	.arc-bg-svg {
+		width: auto;
+		left: 0;
+	}
+
+
 }
 
-.bg-ring-inner {
-	fill: var(--secondary);
-	stroke: var(--neutral-dark);
-}
