@@ -1,0 +1,51 @@
+/***** BACKGROUNDS ******/
+.circles-bg-svg, .arc-bg-svg {
+	height: 0;
+	width: 0;
+	left: -9999rem;
+}
+
+.svg-bg {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1; /* behind content */
+	pointer-events: none;
+	display: block;
+}
+
+[data-theme="circles"] {
+	.circles-bg-svg {
+		inset: 0;
+	}
+
+	.bg-ring-outer {
+		fill: var(--primary);
+		stroke: var(--neutral-dark);
+	}
+
+	.bg-ring-middle {
+		fill: var(--accent);
+		stroke: var(--neutral-dark);
+	}
+
+	.bg-ring-inner {
+		fill: var(--secondary);
+		stroke: var(--neutral-dark);
+	}
+}
+
+[data-theme="arc"] {
+	header {
+		background-color: rgb(from var(--base) r g b / 0.8);
+		margin-bottom: 1rem;
+	}
+
+	.arc-bg-svg {
+		width: auto;
+		left: 0;
+	}
+
+
+}
+

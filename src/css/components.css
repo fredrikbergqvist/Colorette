@@ -1,0 +1,76 @@
+
+#palette-count {
+	position: absolute;
+	top: -0.5rem;
+	right: -0.4rem;
+	font-size: 1rem;
+	background-color: var(--accent);
+	color: var(--accent-darker);
+	padding: 0.25rem 0.5rem;
+	border-radius: 50%;
+	transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+	@starting-style {
+		transform: scale(0);
+	}
+}
+
+.side-menu {
+	width: 20rem;
+	border-radius: 0.5rem;
+	background-color: var(--base-content);
+	color: var(--base);
+	box-shadow: 0 0 0.5rem var(--base-content);
+	padding: 0.5rem 1rem 1rem;
+	border: none;
+	transition: opacity 300ms allow-discrete;
+	opacity: 1;
+	margin-bottom: 1rem;
+
+	@starting-style {
+		opacity: 0;
+	}
+
+	h3 {
+		text-align: center;
+	}
+}
+
+#theme-menu {
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 0.5rem;
+	}
+
+
+}
+
+.saved-palette-item {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.25rem;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: #fff;
+	margin-bottom: 0.5rem;
+
+	.color-swatch {
+		display: inline-block;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.25rem;
+		border: 1px solid #000;
+	}
+
+	.palette-name {
+		border-radius: 0.25rem;
+		padding: 0.4rem;
+		width: 100%;
+	}
+}
+

@@ -1,0 +1,12 @@
+.bg-accent {
+	background-color: var(--accent);
+}
+
+.text-accent {
+	color: var(--accent);
+}
+
+.text-base {
+	color: var(--base);
+}
+

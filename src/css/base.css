@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Chicle&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	color: var(--base-content);
+	background-color: var(--base);
+	font-family: roboto, arial, helvetica, sans-serif;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+input {
+	border-radius: 4px;
+}
+
+input[type="color"] {
+	width: 100%;
+	height: 3rem;
+}
+
+.btn {
+	background-color: var(--accent);
+	color: var(--accent-darker);
+	border: 2px solid var(--accent-darker);
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	font-size: 1.25rem;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 0 0.5rem var(--neutral-dark);
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+}

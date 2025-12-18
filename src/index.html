@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html data-theme="circles" lang="en">
+
 <head>
 	<link href="https://fonts.googleapis.com" rel="preconnect">
 	<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
@@ -28,7 +30,6 @@
 	<meta content="A simple color palette generator that lets you save and share your color palettes." property="twitter:description">
 	<meta content="https://colorette.narv.io/icon.svg" property="twitter:image">
 
-	<link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
 	<link href="./styles.css" rel="stylesheet">
 	<link href="/icon.svg" rel="icon" type="image/svg+xml">
 	<script defer src="./js/main.js" type="module"></script>
@@ -47,7 +48,6 @@
 		<ellipse class="bg-ring-inner" cx="163.24995" cy="496.87779" rx="232.99999" ry="232.99999" />
 	</g>
 </svg>
-
 
 <svg aria-hidden="true"
 		 class="arc-bg-svg svg-bg"
@@ -159,66 +159,81 @@
 	<h1 class="chicle-regular main-heading"><span class="text-accent">Color</span><span>ette</span></h1>
 </header>
 <main>
-
-	<div class="content-box">
-		<p>A simple color palette generator that lets you save and share your color palettes.</p>
-
-		<fieldset>
-			<legend>Color palette</legend>
-			<div>
-				<label for="color-base">Base color:</label>
-				<input id="color-base" type="color" value="#f4f5dd" />
-			</div>
-			<div>
-				<label for="color-base-content">Base content color:</label>
-				<input id="color-base-content" type="color" value="#4A4944" />
-			</div>
-			<div>
-				<label for="color-primary">Primary color:</label>
-				<input id="color-primary" type="color" value="#c2a056" />
-			</div>
-			<div>
-				<label for="color-secondary">Secondary color:</label>
-				<input id="color-secondary" type="color" value="#5a696a" />
-			</div>
-			<div>
-				<label for="color-accent">Accent color:</label>
-				<input id="color-accent" type="color" value="#ff6962" />
-			</div>
-			<div></div>
-			<div>
-				<label for="color-neutral-dark">Neutral dark color:</label>
-				<input id="color-neutral-dark" type="color" value="#111111" />
-			</div>
-			<div>
-				<label for="color-neutral-light">Neutral light color:</label>
-				<input id="color-neutral-light" type="color" value="#eeeeee" />
-			</div>
-
-			<div class="palette-name">
-				<label for="palette-name">Palette name:</label>
-				<input id="palette-name" type="text" value="My palette" />
-			</div>
-			<div class="btn-group">
-				<button class="btn" id="btn-generate" type="button">Save palette</button>
-			</div>
-		</fieldset>
-
+	<div class="content">
 		<nav class="button-menu">
+			<button aria-label="Edit colors" id="btn-generate-link" type="button">
+				<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M18.656.93 6.464 13.122A4.97 4.97 0 0 0 5 16.657V18a1 1 0 0 0 1 1h1.343a4.97 4.97 0 0 0 3.535-1.464L23.07 5.344a3.125 3.125 0 0 0 0-4.414 3.194 3.194 0 0 0-4.414 0m3 3L9.464 16.122A3.02 3.02 0 0 1 7.343 17H7v-.343a3.02 3.02 0 0 1 .878-2.121L20.07 2.344a1.15 1.15 0 0 1 1.586 0 1.123 1.123 0 0 1 0 1.586" />
+					<path
+						d="M23 8.979a1 1 0 0 0-1 1V15h-4a3 3 0 0 0-3 3v4H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h9.042a1 1 0 0 0 0-2H5a5.006 5.006 0 0 0-5 5v14a5.006 5.006 0 0 0 5 5h11.343a4.97 4.97 0 0 0 3.536-1.464l2.656-2.658A4.97 4.97 0 0 0 24 16.343V9.979a1 1 0 0 0-1-1m-4.535 12.143a2.98 2.98 0 0 1-1.465.8V18a1 1 0 0 1 1-1h3.925a3 3 0 0 1-.8 1.464Z" />
+				</svg>
+			</button>
+
 			<button aria-label="Toggle saved palettes panel" id="toggle-saved-palettes" type="button">
 				<saved-palette-counter></saved-palette-counter>
-				<svg aria-hidden="true" height="42" viewBox="0 0 24 24" width="42" xmlns="http://www.w3.org/2000/svg">
+				<svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M23.305 16.25a1.89 1.89 0 0 1-1.377 1.177 1.91 1.91 0 0 1-1.769-.521l-.1-.1a3.567 3.567 0 0 0-6.089 2.553l.04 4.516-.924.077c-.331.028-.663.05-1 .05A12 12 0 0 1 3.745 3.371 11.89 11.89 0 0 1 12.5.007 12.155 12.155 0 0 1 24.08 11.7a11.9 11.9 0 0 1-.775 4.55m-6.19-8.2a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065m-5-3a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065m-5 3A1.5 1.5 0 1 0 8.95 9.115 1.5 1.5 0 0 0 7.115 8.05m0 6a1.5 1.5 0 1 0 1.835 1.065 1.5 1.5 0 0 0-1.835-1.065" />
 				</svg>
 			</button>
+
 			<button aria-label="Toggle theme panel" id="theme-toggle-btn" type="button">
-				<svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+				<svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M0 9.756h14V15H0zm0 8c0 2.757 2.243 5 5 5h9V17H0zm16 5h3c2.757 0 5-2.243 5-5v-8h-8zM24 6v2H0V6c0-2.757 2.243-5 5-5h14c2.757 0 5 2.243 5 5M6 4.5a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 6 4.5m4 0a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 10 4.5m4 0a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 14 4.5" />
 				</svg>
 			</button>
 		</nav>
+		<div class="content-box">
+			<p>A simple color palette generator that lets you save and share your color palettes.</p>
+
+			<div class="palette-description" id="palette-content">
+
+			</div>
+
+			<fieldset class="hidden" id="palette-form">
+				<legend>Update the colors in the palette</legend>
+				<div>
+					<label for="color-base">Base color:</label>
+					<input id="color-base" type="color" value="#f4f5dd" />
+				</div>
+				<div>
+					<label for="color-base-content">Base content color:</label>
+					<input id="color-base-content" type="color" value="#4A4944" />
+				</div>
+				<div>
+					<label for="color-primary">Primary color:</label>
+					<input id="color-primary" type="color" value="#c2a056" />
+				</div>
+				<div>
+					<label for="color-secondary">Secondary color:</label>
+					<input id="color-secondary" type="color" value="#5a696a" />
+				</div>
+				<div>
+					<label for="color-accent">Accent color:</label>
+					<input id="color-accent" type="color" value="#ff6962" />
+				</div>
+				<div></div>
+				<div>
+					<label for="color-neutral-dark">Neutral dark color:</label>
+					<input id="color-neutral-dark" type="color" value="#111111" />
+				</div>
+				<div>
+					<label for="color-neutral-light">Neutral light color:</label>
+					<input id="color-neutral-light" type="color" value="#eeeeee" />
+				</div>
+
+				<div class="palette-name">
+					<label for="palette-name">Palette name:</label>
+					<input id="palette-name" type="text" value="My palette" />
+				</div>
+				<div class="btn-group">
+					<button class="btn" id="btn-generate" type="button">Save palette</button>
+				</div>
+			</fieldset>
+
+		</div>
 	</div>
 	<aside>
 		<saved-palettes></saved-palettes>

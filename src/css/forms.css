@@ -1,0 +1,45 @@
+fieldset {
+	border: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	legend {
+		position: absolute;
+		top: -9999rem;
+		left: -9999rem;
+	}
+
+	& > div {
+		margin-bottom: 1rem;
+		width: 50%;
+		padding: 0.5rem 1rem;
+
+		&.btn-group {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+
+	label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: bold;
+		font-size: 1.25rem;
+	}
+
+	.palette-name {
+		width: 100%;
+	}
+
+}
+
+#palette-name {
+	width: 100%;
+	padding: 0.75rem;
+	color: var(--base-content);
+	background-color: var(--base);
+	border: 5px solid var(--neutral-light);
+}
+
