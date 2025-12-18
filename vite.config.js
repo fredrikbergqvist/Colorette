@@ -1,5 +1,6 @@
 import {defineConfig} from "vite";
 import {VitePWA} from "vite-plugin-pwa";
+import {minify} from "html-minifier-terser";
 
 export default defineConfig({
 	root: "src",
@@ -13,7 +14,7 @@ export default defineConfig({
 			name: "inline-css",
 			apply: "build",
 			enforce: "post",
-			generateBundle(options, bundle) {
+			async generateBundle(options, bundle) {
 				const htmlFile = Object.values(bundle).find(file => file.fileName.endsWith(".html"));
 				if (!htmlFile) return;
 
@@ -38,6 +39,13 @@ export default defineConfig({
 						return tag.replace("<script", "<script defer");
 					}
 					return tag;
+				});
+
+				html = await minify(html, {
+					collapseWhitespace: true,
+					removeComments: true,
+					minifyCSS: true,
+					minifyJS: true,
 				});
 
 				htmlFile.source = html;
