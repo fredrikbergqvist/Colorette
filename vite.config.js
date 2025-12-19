@@ -44,7 +44,7 @@ export default defineConfig({
 				html = await minify(html, {
 					collapseWhitespace: true,
 					removeComments: true,
-					minifyCSS: true,
+					minifyCSS: false,
 					minifyJS: true,
 				});
 
