@@ -8,12 +8,13 @@ export class SavedPalettes extends HTMLElement {
 	showPanel = false;
 
 	render() {
-		if (!this.showPanel) {
-			this.innerHTML = ``;
-			return;
-		}
+
 		const savedPalettes = getSavedPalettes();
-		const markup = savedPalettes.map(p => `<saved-palette a="${p.a}" b="${p.b}" bc="${p.bc}" nd="${p.nd}" nl="${p.nl}" p="${p.p}" s="${p.s}" nm="${p.nm}"></saved-palette>`);
+		let markup = Object.entries(savedPalettes).map(([_key, p]) =>
+			`<saved-palette a="${p.a}" b="${p.b}" bc="${p.bc}" nd="${p.nd}" nl="${p.nl}" p="${p.p}" s="${p.s}" nm="${p.nm}"></saved-palette>`);
+		if (markup.length === 0) {
+			markup = [`<div class="no-saved-palettes">No saved palettes</div>`]
+		}
 		this.innerHTML = `
 		 <div class="side-menu" id="saved-palettes-menu">
 			<h3>Saved palettes</h3>

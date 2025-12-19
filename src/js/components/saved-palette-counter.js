@@ -5,7 +5,8 @@ export class SavedPaletteCounter extends HTMLElement {
 
 	#render() {
 		const savedPalettes = getSavedPalettes();
-		this.innerHTML = `<span id="palette-count" role="status">${savedPalettes.length}<span class="sr-only"> saved palettes</span></span>`
+		const count = Object.keys(savedPalettes).length;
+		this.innerHTML = `<span id="palette-count" role="status">${count}<span class="sr-only"> saved palettes</span></span>`
 	}
 
 	connectedCallback() {

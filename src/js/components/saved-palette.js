@@ -1,4 +1,4 @@
-import {applyPaletteToPage} from "../util/palettes";
+import {applyPaletteToPage, deletePalette} from "../util/palettes";
 import {getPaletteFromUrl, savePaletteToUrl} from "../util/urlhandling";
 import {setPaletteInputs} from "../util/forms";
 
@@ -17,7 +17,20 @@ export class SavedPalette extends HTMLElement {
 		const s = this.getAttribute("s");
 		if (!b || !bc || !nd || !nl) return "";
 		return `<div class="saved-palette-item" tabindex="0" role="button" aria-label="Select saved palette ${nm}">
-		<div class="palette-name" style="color: ${bc};background-color: ${b}"> ${nm}</div>
+		<div class="palette-name" style="color: ${bc};background-color: ${b}"> ${nm}
+		<div>
+		<button class="edit-btn" aria-label="Edit palette ${nm}" title="Edit saved palette ${nm}">
+			<svg width="20" height="20" aria-hidden="true" focusable="false">
+				<use href="#icon-edit" xlink:href="#icon-edit" />
+			</svg>
+		</button>
+		<button class="delete-btn" aria-label="Delete saved palette ${nm}" title="Delete saved palette ${nm}">
+			<svg width="20" height="20" aria-hidden="true" focusable="false">
+				<use href="#icon-trash" xlink:href="#icon-trash" />
+			</svg>
+		</button>
+		</div>
+		</div>
 			<div class="color-swatch" style="background-color: ${a}"></div>
 			<div class="color-swatch" style="background-color: ${p}"></div>
 			<div class="color-swatch" style="background-color: ${s}"></div>
@@ -56,16 +69,24 @@ export class SavedPalette extends HTMLElement {
 	#selectPalette() {
 		const palette = this.#previewOnPage();
 		setPaletteInputs(palette);
-		applyPaletteToPage(palette);
 		savePaletteToUrl(palette);
+		applyPaletteToPage(palette);
+		this.activePalette = null;
+	}
 
+	#deletePalette() {
+		this.querySelector(".saved-palette-item").classList.add("remove");
+		setTimeout(() =>
+				deletePalette(this.getAttribute("nm"))
+			, 240);
 	}
 
 	connectedCallback() {
 		this.innerHTML = this.#render();
 		this.querySelector(".saved-palette-item").addEventListener("mouseenter", this.#previewOnPage.bind(this));
 		this.querySelector(".saved-palette-item").addEventListener("mouseleave", this.#restorePage.bind(this));
-		this.querySelector(".saved-palette-item").addEventListener("click", this.#selectPalette.bind(this));
+		this.querySelector(".edit-btn").addEventListener("click", this.#selectPalette.bind(this));
+		this.querySelector(".delete-btn").addEventListener("click", this.#deletePalette.bind(this));
 		this.querySelector(".saved-palette-item").addEventListener("keydown", (e) => e.key === "Enter" && this.#selectPalette())
 	}
 

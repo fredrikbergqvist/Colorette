@@ -3,18 +3,21 @@ main {
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
-	gap: 1rem;
+	margin: 0 1rem 1rem;
+	min-width: 320px;
 }
 
 aside {
 	padding: 0;
+	margin-left: 1rem;
 }
 
 
 .main-heading {
 	text-align: center;
+	padding: 0 1rem;
 	margin: 0;
-	font-size: 10rem;
+	font-size: clamp(5.5rem, 20vw, 10rem);
 }
 
 .content-box {
